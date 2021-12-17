@@ -67,6 +67,7 @@
     "graceful-fs": "^4.2.8",
     "has-flag": "^3.0.0",
     "has-yarn": "^2.1.0",
+    "html-webpack-plugin": "^5.5.0",
     "http-cache-semantics": "^4.1.0",
     "http-errors": "^1.7.2",
     "iconv-lite": "^0.4.24",
@@ -162,6 +163,7 @@
     "utils-merge": "^1.0.1",
     "vary": "^1.1.2",
     "web-streams-polyfill": "^3.2.0",
+    "webpack": "^5.65.0",
     "widest-line": "^3.1.0",
     "wrap-ansi": "^7.0.0",
     "wrappy": "^1.0.2",
@@ -173,5 +175,8 @@
     "start": "nodemon server/server.js"
   },
   "author": "Alex Zayas",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack-cli": "^4.9.1"
+  }
 }
