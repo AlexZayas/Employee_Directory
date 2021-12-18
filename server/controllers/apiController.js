@@ -24,56 +24,38 @@ try {
 };
 
 /**
- * retrieve employee information
+ * retrieve employee information and store that information into DB in order to persist that data for 
+ * CRUD and Search functionality which will be in database controller
  */
 apiController.employee = async (req, res, next) => {
     try {
-        const titles = ['Software Engineer','Manager', 'Human Resources'];
-        const departments = ['Software Development', 'Management', 'HR'];
+        //titles and departments are not available as responses from the Api
+        //so I have created my own and will add them to the randomly generated employees.
 
+        const titles = ['SoftwareEngineer','Manager', 'HumanResources'];
+        const departments = ['SoftwareDevelopment', 'Management', 'HR'];
 
+        // using function and index variable to coordinate title and department when adding employee into DB
+        function randomNumber() { 
+            return Math.floor(Math.random() * (2 - 0 + 1)) + 0;
+        } 
+        let index = randomNumber()
 
         const responseData = await fetch('https://randomuser.me/api/');
         const jsonData = await responseData.json();
         console.log('JsonData: ',jsonData);
 
-      
-           let index = 0;
-           while(index < title.length){
-               if(index = title.length) index = 0;
-          await pool.query(`INSERT INTO employee(first_name, last_name, picture, job_title, department, start_date, phone_number, email, location)
-           VALUES(${jsonData.results[0].name.first}, ${jsonData.results[0].name.last}, ${jsonData.results[0].picture.thumbnail}, ${titles[index]}, ${departments[index]}, ${jsonData.results[0].registered.date}, ${jsonData.results[0].phone}, ${jsonData.results[0].email}, ${jsonData.results[0].location.state})`); 
-           index++
-        };
-
+        await pool.query(`INSERT INTO employee(first_name, last_name, picture, job_title, department, start_date, phone_number, email, location)
+        VALUES('${jsonData.results[0].name.first}', '${jsonData.results[0].name.last}', '${jsonData.results[0].picture.thumbnail}', '${titles[index]}', '${departments[index]}', '${jsonData.results[0].registered.date.slice(0,10)}', '${jsonData.results[0].phone}', '${jsonData.results[0].email}', '${jsonData.results[0].location.state}')`);
+    
         res.locals.jsonData = jsonData;
        return next();
     } catch (error) {
         return next({
-            log: `apiController.posts: ERROR: ${error}`,
-            message: {err: 'Error occurred in apiController.posts. Check server log for more details.'},
+            log: `apiController.employee: ERROR: ${error}`,
+            message: {err: 'Error occurred in apiController.employee. Check server log for more details.'},
         });
     }
 };
-
-/**
- * store employee information
- */
-// apiController.addToDB =  (req, res, next) => {
-//     try {
-//         const titles = ['Software Engineer','Manager', 'Human Resources'];
-//         const departments = ['Software Development', 'Management', 'HR'];
-
-//         function insertIntoDB (jsonData) {
-
-//         }
-
-
-
-
-//     } catch (error) {
-        
-//     }
-// }
 
 module.exports = apiController;

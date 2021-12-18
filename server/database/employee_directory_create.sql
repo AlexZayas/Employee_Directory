@@ -25,7 +25,7 @@ CREATE TABLE public.employee (
     "picture"  bytea NOT NULL,
 	"job_title" varchar NOT NULL,
 	"department" varchar NOT NULL,
-	"start_date" DATE NOT NULL,
+	"start_date" varchar NOT NULL,
 	"phone_number" varchar NOT NULL,
 	"email" varchar NOT NULL,
 	"location" varchar NOT NULL,

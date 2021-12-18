@@ -7,6 +7,7 @@ const PORT = 3000;
  * require routers
  */
  const apiRouter = require('./routes/api');
+ const databaseRouter = require('./routes/database');
 
  /**
   * handle parsing request body
@@ -18,6 +19,7 @@ const PORT = 3000;
   * route handlers
   */
  app.use('/api', apiRouter);
+ app.use('/database', databaseRouter);
  
  /**
   * route handler to respond with main app
