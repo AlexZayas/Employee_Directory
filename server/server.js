@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = 3000;
+const PORT = 3333;
 
 /**
  * require routers
@@ -14,6 +14,12 @@ const PORT = 3000;
   */
  app.use(express.json());
  app.use(express.urlencoded({extended: true}));
+
+ /**
+  * handle requests for static files
+  */
+
+ app.use(express.static(path.resolve(__dirname, '../client')));
  
  /**
   * route handlers
