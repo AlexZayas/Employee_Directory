@@ -1,35 +1,27 @@
 import React from "react"
 import { useState, } from "react";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
-const EmployeeCard = () => {
-    const [id, setId] = useState("")
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [picture, setPicture] = useState("");
-    const [jobTitle, setJobTitle] = useState("");
-    const [department, setDepartment] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [email, setEmail] = useState("");
-    const [location, setLocation] = useState("");
-
+const EmployeeCard = ({data}) => {
+  const { picture, _id, first_name, last_name, job_title, department, start_date, phone_number, email, location } = data;
 
     return(
-    <div className="employeeBox">
-      <img id="picture" src={picture} alt="EmployeePhoto" width="55" height="65"></img>
-      <li id="id">{id}</li>
-      <li id="firstName">{firstName}</li>
-      <li id="lastName">{lastName}</li>
-      <li id="jobTitle">{jobTitle}</li>
-      <li id="department">{department}</li>
-      <li id="startDate">{startDate}</li>
-      <li id="phoneNumber">{phoneNumber}</li>
-      <li id="email">{email}</li>
-      <li id="location">{location}</li>
-    </div>
+    <article className="employeeDisplay">
+      <ul className="cardItems">
+      <img className="picture" src={picture} alt="EmployeePhoto" width="55" height="65"></img>
+      <li className="id">ID: {_id}</li>
+      <li className="firstName">First Name: {first_name}</li>
+      <li className="lastName">Last Name: {last_name}</li>
+      <li className="jobTitle">Title: {job_title}</li>
+      <li className="department">Department: {department}</li>
+      <li className="startDate">Start Date: {start_date}</li>
+      <li className="phoneNumber">Phone: {phone_number}</li>
+      <li className="email">Email: {email}</li>
+      <li className="location">Location: {location}</li>
+      </ul>
+      </article>
     );
-
 };
 
 

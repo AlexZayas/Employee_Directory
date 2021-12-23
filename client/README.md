@@ -1,12 +1,11 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- GETTING STARTED -->
 
 ## Available Scripts
 
 In the project directory, you can run:
 
 ### `npm start`
+You must open 2 terminals. CD into the Server directory of the project and Run NPM Start. Open another terminal CD into the Client directory and Run NPM Start. 
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
@@ -14,57 +13,92 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+* http://localhost:3000/directory (VIEW THE EMPLOYEE DIRECTORY)
+* http://localhost:3000/create (VIEW FORMS TO SUBMIT CUSTOM EMPLOYEE INFORMATION TO DATABASE OR ADD API GENERATED EMPLOYEE TO DATABASE)
+* http://localhost:3000/update (VIEW FORM TO UPDATE EMPLOYEE INFORMATION) COLUMN NAMES ARE AS FOLLOWS: 
+    "first_name",
+	"last_name",
+    "picture",
+	"job_title",
+	"department",
+	"start_date",
+	"phone_number",
+	"email",
+	"location"
+* http://localhost:3000/delete (VIEW FORM TO DELETE EMPLOYEE BY ID);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- ABOUT THE PROJECT -->
 
-### `npm run build`
+## About The Project
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Tools used
+* [React](https://reactjs.org/docs/getting-started.html)
+* [Axios](https://axios-http.com/docs/intro)
+* [Express](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/docs/)
+* [PostMan](https://learning.postman.com/docs/getting-started/introduction/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- NOTES -->
 
-### `npm run eject`
+* REMINDER TO USE TWO TERMINALS (SERVER AND CLIENT) IN ORDER TO RUN PROJECT.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* PRIOR TO WRITING A SINGLE LINE OF CODE I FELT IT APPROPRIATE TO DRAW OUT THE ENTIRE APPLICATION AND PLAN HOW I INTENDED TO BUILD OUT THE EMPLOYEE DIRECTORY, DETERMINE WHAT TOOLS I WOULD USE, AND PROBLEMS I MIGHT ENCOUNTER. THIS ROADMAP WAS CRUCIAL IN ALLOWING ME TO PLAN OUT EACH DAY, SET CHECKPOINTS AND TRACK PROGRESS.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* THE EMPLOYEE DIRECTORY WAS CREATED SERVERSIDE FIRST BECAUSE I KNEW I NEEDED TO BE ABLE TO CREATE EMPLOYEE DATA USING A THIRD PARTY PERSON API(https://randomuser.me), STORE IT, AND MANIPULATE IT. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* I STARTED BY SETTING UP A SERVER USING EXPRESS WITH A TEST ROUTE '/PING' AND A CONTROLLER 'APICONTROLLER.PING' JUST TO MAKE SURE THINGS WERE WORKING CORRECTLY. POSTMAN WAS USED HEAVILY TO CONFIRM THAT CLIENT SIDE REQUESTS WERE GETTING THE APPROPRIATE RESPONSES FROM THE SERVER SIDE.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+* CRUD FUNCTIONALITY IS A BIG PART OF WHAT IS BEING ASKED FOR IN THIS ASSESSMENT SO I USED POSTGRESQL IN ORDER TO BUILD A DATABASE THAT STORED ALL OF OUR EMPLOYEE DATA. 
 
-## Learn More
+* ONCE THE DATABASE WAS SETUP I CREATED A ROUTE AND CONTROLLER THAT MADE THE CALL THE THE THIRD PARTY API AND STORED THAT DATA IN THE DATABASE.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* THIS FUNCTIONALITY IS FOUND IN THE  SERVER/ROUTES/API.JS FILE AND SERVER/CONTROLLERS/APICONTROLLER.JS FILE.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* ONCE I HAD ENOUGH EMPLOYEES IN THE DATABASE I FOCUSED ON CRUD FUNCTIONALITY FOR THE DATABASE AND SETUP THE APPROPRIATE ROUTES AND METHODS IN THE SERVER/ROUTES/DATABASE.JS FILE AND SERVER/CONTROLLERS/DATABASECONTROLLER.JS FILE.
 
-### Code Splitting
+* I DID MY BEST TO MAKE THINGS AS EASY TO INTUIT AS POSSIBLE WITH MY NAMING CONVENTION BUT I ALSO LEFT COMMENTS ON EACH ROUTE AND METHOD JUST TO BE AS HELPFUL AS POSSIBLE WHEN READING THROUGH THE CODE.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* THE FRONT END WAS BUILT USING REACT(create-react-app was used to saved time with webpack) AND AXIOS.
 
-### Analyzing the Bundle Size
+* ONCE THE NECESSARY FUNCTIONALITY WAS WORKING ON THE BACK END I FELT IT WAS TIME TO BUILD REACT ON TOP OF THE BACKEND AND START RENDERING EMPLOYEE DATA.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* I STARTED ON THE FRONT END BY CREATING THE FORMS(in the form of components) I WOULD USE FOR CREATING NEW EMPLOYEES, DELETING EMPLOYEES, AND UPDATING EMPLOYEE INFORMATION.
 
-### Making a Progressive Web App
+* EVEN THOUGH THE BACK END METHODS WERE TESTED VIA POSTMAN AND FUNCTIONED CORRECTLY THEY NEEDED TO BE ADJUSTED WHEN THE REQUEST WAS COMING IN FROM THE CLIENT VIA REACT AND NO LONGER FROM POSTMAN.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* WITH THE PROPER ADJUSTMENTS MADE ALL OF CRUD METHODS ARE FUNCTIONING AS INTENDED AND EITHER RENDERING EMPLOYEES ON THE FRONT END OR MAKING THE APPROPRIATE CHANGES TO THE DIRECTORY DATABASE.
 
-### Advanced Configuration
+* ONCE THE FORMS WERE COMPLETE I NEEDED TO CREATE TWO MORE COMPONENTS THAT WOULD ALLOW ME TO RENDER THE EMPLOYEES IN THE DATABASE. I STARTED WITH THE EMPLOYEECARD COMPONENT IN ORDER TO PASS EACH INDIVIDUAL EMPLOYEES INFORMATION THAT COULD BE RENDERED AS AN INDIVIDUAL 'STAMP' OF DATA
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* THE LAST COMPONENT CREATED WAS THE DIRECTORY COMPONENT WHICH THE CARDS OR "STAMPS" WOULD BE APPLIED TO.  
 
-### Deployment
+<!-- SUGGESTED FEATURES COMPLETE/INCOMPLETE  -->     
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* Setup instructions and notes on how you built the application.    /*COMPLETE*/
+* Use of a frontend framework, ideally React.                       /*COMPLETE*/
+* Modern API, we commonly use Node in-house.                        /*COMPLETE*/
+* Ability to display employees by department, title, location, etc. /*INCOMPLETE, FUNCTIONALITY IS THERE ON BACKEND BUT DOES NOT WORK ON FRONT END (TITLE AND DEPARTMENT DROP DOWNS ON DIRECTORY PAGE NON-FUNCTIONAL*/
+* Use of a client-side router                                       /*COMPLETE*/
+* Creative use of animation                                         /*INCOMPLETE*/
+* Paginated lists                                                   /*INCOMPLETE*/
+* Forms for creating, updating, and deleting employees              /*COMPLETE*/
+* Source data from a third party person API                         /*COMPLETE*/
+* Ability to search for employees                                   /*COMPLETE*/
+* Testing                                                           /*INCOMPLETE*/
 
-### `npm run build` fails to minify
+<!-- MY THOUGHTS/WHAT WOULD BE MORE COMPLETE IN THIS PROJECT IN A PRODUCTION ENVIROMENT -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* FIRST I WOULD LIKE TO SAY TO THE POST LIGHT TEAM, THANK YOU FOR YOUR TIME AND THE OPPORTUNITY TO JOIN YOUR TEAM.
+
+* THE STYLING OF THE DIRECTORY AS IS NOW NEEDS ALOT OF WORK BUT I FELT IT MORE IMPORTANT TO MAKE SURE THAT THE FUNCTIONALITY IS THERE BEFORE WORRYING TOO MUCH ABOUT THE AESTHETICS. IN A PRODUCTION ENVIRONMENT WHERE THIS APP WOULD BE USED IN THE REAL WORLD, THIS APP WOULD NEED A MAJOR VISUAL OVERHAUL. 
+
+* CLIENT SIDE CACHING TO SAVE CALLS TO DATABASE. 
+
+* TEST DRIVEN DEVELOPMENT USING JEST OR MOCHA WOULD BE NEEDED.
+
+* THE ABILITY TO REFINE THE FILTER ABILITY EVEN FURTHER THAN JUST TITLE OR DEPARTMENT. 
+
+
+
+

@@ -8,17 +8,36 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom';
 import Delete from './Delete';
 import Update from './Update';
 import ApiNewHire from './ApiNewHire';
+import EmployeeCard from './EmployeeCard';
+import Directory from './Directory';
 
 function App() {
 
   return (
      <div className="App">
-    <Update/>
+       <Router>
+         <Switch>
+           <Route path="/directory">
+             <Directory/>
+           </Route>
+           <Route path="/create">
+             <NewHire/>
+             <ApiNewHire/>
+           </Route>
+           <Route path="/update">
+             <Update/>
+           </Route>
+           <Route path="/delete">
+             <Delete/>
+           </Route>
+         </Switch>
+       </Router>
      </div>
   )
   }
