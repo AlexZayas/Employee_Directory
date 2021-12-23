@@ -22,7 +22,7 @@ CREATE TABLE public.employee (
 	"_id" serial NOT NULL,
 	"first_name" varchar NOT NULL,
 	"last_name" varchar NOT NULL,
-    "picture"  bytea NOT NULL,
+    "picture"  varchar NOT NULL,
 	"job_title" varchar NOT NULL,
 	"department" varchar NOT NULL,
 	"start_date" varchar NOT NULL,

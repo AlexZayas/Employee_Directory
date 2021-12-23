@@ -6,6 +6,7 @@ const pool = require('../database/employeeModel');
 
 const databaseController = {};
 
+//this adds an employee to the directory with information input via the client rather than the information retrieved from the random user generator
 databaseController.addEmployee = async (req, res, next) => {
     try {
         const {firstName, lastName, picture, jobTitle, department, startDate, phoneNumber, email, location } = req.body;
@@ -22,11 +23,10 @@ databaseController.addEmployee = async (req, res, next) => {
 
 };
 
+//update employee record
 databaseController.updateDirectory = async (req, res, next) => {
     try {
         const {id, columnName, updatedInformation} = req.body;
-        console.log('req: ', req.body);
-        //console.log('id: ', id, "columnName: ", columnName, "updatedinformation: ", updatedInformation)
         await pool.query(`UPDATE employee SET ${columnName} = '${updatedInformation}' WHERE _id = ${id}`);
 
         return next();
@@ -38,6 +38,7 @@ databaseController.updateDirectory = async (req, res, next) => {
     }
 };
 
+//delete employee by ID
 databaseController.deleteRecord = async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -52,11 +53,11 @@ databaseController.deleteRecord = async (req, res, next) => {
     }
 };
 
+//retrieve all employees
 databaseController.showAll = async (req, res, next) => {
     try {
         const data = await pool.query(`SELECT * FROM employee`);
-        console.log('data.rows: ', data.rows);
-        res.locals.data = data;
+        res.locals.data = data.rows;
 
         return next();
     } catch (error) {
@@ -67,6 +68,7 @@ databaseController.showAll = async (req, res, next) => {
     }
 };
 
+//Filter employees by title
 databaseController.title = async (req, res, next) => {
     try {
         const { title } = req.params
@@ -81,10 +83,11 @@ databaseController.title = async (req, res, next) => {
     }
 };
 
+// Filter employees by department
 databaseController.department = async (req, res, next) => {
     try {
-        const { dept } = req.params
-        const data = await pool.query(`SELECT * FROM employee WHERE department = ${dept}`);
+        const { department } = req.params
+        const data = await pool.query(`SELECT * FROM employee WHERE department = ${department}`);
         res.locals.data = data;
         return next();        
     } catch (error) {
@@ -93,6 +96,21 @@ databaseController.department = async (req, res, next) => {
             message: {err: 'Error occurred in databaseController.department. Check server log for more details.'},
         });  
     }
+};
+
+// Search employee by 
+databaseController.searchBy = async (req, res, next) => {
+    try {
+        const {columnName, value} = req.query;
+        const data = await pool.query(`SELECT * FROM employee WHERE ${columnName} = '${value}'`);
+        res.locals.data = data;
+    } catch (error) {
+        return next({
+            log: `databaseController.searchBy: ERROR: ${error}`,
+            message: {err: 'Error occurred in databaseController.searchBy. Check server log for more details.'},
+        });  
+    }
+
 };
 
 module.exports = databaseController;

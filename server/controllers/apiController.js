@@ -8,7 +8,7 @@ const pool = require('../database/employeeModel');
 const apiController = {};
 
 /** 
- * Test .ping 
+ * Test APICONTROLLER.PING
  */
 
 apiController.ping = (req,res,next) => {
@@ -43,7 +43,6 @@ apiController.employee = async (req, res, next) => {
 
         const responseData = await fetch('https://randomuser.me/api/');
         const jsonData = await responseData.json();
-        console.log('JsonData: ',jsonData);
 
         await pool.query(`INSERT INTO employee(first_name, last_name, picture, job_title, department, start_date, phone_number, email, location)
         VALUES('${jsonData.results[0].name.first}', '${jsonData.results[0].name.last}', '${jsonData.results[0].picture.thumbnail}', '${titles[index]}', '${departments[index]}', '${jsonData.results[0].registered.date.slice(0,10)}', '${jsonData.results[0].phone}', '${jsonData.results[0].email}', '${jsonData.results[0].location.state}')`);

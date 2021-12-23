@@ -22,7 +22,11 @@ router.get('/title/:title', databaseController.title, (req, res) => {
     res.status(200).json(res.locals.data);
 });
 
-router.get('/department/:dept', databaseController.department, (req, res) => {
+router.get('/department/:department', databaseController.department, (req, res) => {
+    res.status(200).json(res.locals.data);
+});
+
+router.get('/searchBy', databaseController.searchBy, (req, res) => {
     res.status(200).json(res.locals.data);
 });
 
