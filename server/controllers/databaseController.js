@@ -102,7 +102,7 @@ databaseController.department = async (req, res, next) => {
 databaseController.searchBy = async (req, res, next) => {
     try {
         const {columnName, value} = req.query;
-        const data = await pool.query(`SELECT * FROM employee WHERE ${columnName} = '${value}'`);
+        const data = await pool.query(`SELECT * FROM employee WHERE ${columnName} = ${value}`);
         res.locals.data = data;
     } catch (error) {
         return next({
