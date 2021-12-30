@@ -1,7 +1,4 @@
 import React from "react"
-import { useState, } from "react";
-import axios from 'axios';
-import { Link } from "react-router-dom";
 
 const EmployeeCard = ({data}) => {
   const { picture, _id, first_name, last_name, job_title, department, start_date, phone_number, email, location } = data;

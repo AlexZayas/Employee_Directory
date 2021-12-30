@@ -25,9 +25,6 @@ const NewHire = () => {
         });
     }
 
-    
-
-
     return (
         <div className="input-params">
             <form
