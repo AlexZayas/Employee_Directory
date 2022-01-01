@@ -27,6 +27,12 @@ const NewHire = () => {
 
     return (
         <div className="input-params">
+             <header>
+            <button id="homepage" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='http://localhost:3000/directory';
+                }}>Homepage</button>
+            </header>
             <form
                   onSubmit={(e) => {
                     e.preventDefault();

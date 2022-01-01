@@ -19,6 +19,7 @@ const ApiNewHire = () => {
 
     return(
         <div className="input-params">
+            
             <form
             onSubmit={(e) => {
                 e.preventDefault();
