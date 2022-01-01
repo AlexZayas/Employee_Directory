@@ -33,6 +33,21 @@ const Directory = () => {
 
     return (
         <div>
+            <header id="header">
+                <button id="create" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='http://localhost:3000/create';
+                }}>Create New Employee</button>
+                <button id="update" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='http://localhost:3000/update';
+                }}>Update Employee Information</button>
+                <button id="delete" onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href='http://localhost:3000/delete';
+                }}>Delete Employee</button>
+            </header>
+            
             <div className="search-params">
                 <form>
                     <label htmlFor="title">

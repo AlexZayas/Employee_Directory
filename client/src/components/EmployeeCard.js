@@ -4,7 +4,7 @@ const EmployeeCard = ({data}) => {
   const { picture, _id, first_name, last_name, job_title, department, start_date, phone_number, email, location } = data;
 
     return(
-    <article className="employeeDisplay">
+    <article data-testid="employeeData" className="employeeDisplay">
       <ul className="cardItems">
       <img className="picture" src={picture} alt="EmployeePhoto" width="55" height="65"></img>
       <li className="id">ID: {_id}</li>
